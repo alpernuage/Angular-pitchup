@@ -1,0 +1,33 @@
+
+<li
+  [ngClass]="{'list-group-item' :true ,
+'list-group-item-success' : pitchScore > 4,
+'list-group-item-danger': pitchScore < 0}"
+  >
+  <h2>
+    <span *ngIf="pitchScore >=5; else sadFace">⭐</span>
+    <ng-template #sadFace><span>😔</span></ng-template>
+    <!-- <span *ngIf="pitchScore >= 10">👑</span> -->
+    {{pitchTitle}} <span
+    [ngStyle]="{'background-color':getBgColor()}"
+
+    class="badge badge-pill badge-primary"> {{pitchCategory}}</span></h2>
+    <p>{{lastUpdate |async| date: "dd/MM/yyyy - HH'h'mm z"}}</p>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Edit pitch title" [(ngModel)]="pitchTitle">
+  </div>
+  <p>
+    {{pitchContent | slice:0:15 }}(...)
+    <a [routerLink]="[pitchId]">View details</a>
+  </p>
+  <!-- <p>{{getPitchTitle()}} </p> -->
+  <footer>
+    <button (click)="onVoteUp()" type="button" name="button" class="btn btn-success">👍 vote up </button>
+    <button (click)="onVoteDown()" type="button" name="button" class="btn btn-danger ml-3">👎 vote down</button>
+    <button type="button" class="btn btn-outline-info ml-3" name="button" (click)="onResetOne()">reset</button>
+
+    <p [ngClass]="{'float-right font-weight-bold h3':true,
+      'text-dnager': pitchScore<0,
+  'text-success':pitchScore > 4}">{{pitchScore}}</p>
+  </footer>
+</li>

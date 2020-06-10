@@ -1,0 +1,3 @@
+<a href="#" (click)="onSignIn()" class="btn btn-outline-success mr-3" *ngIf="!authStatus">Sign In</a>
+<a href="#" (click)="onSignOut()" class="btn btn-outline-danger mr-3"  *ngIf="authStatus">Sign Out</a>
+<a routerLink="pitches" class="btn btn-info" *ngIf="authStatus">View pitches</a>
